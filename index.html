@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lissajous Curve & Signals</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <h2>Lissajous Curve and Signals</h2>
+  <div class="container">
+    <div class="left">
+      <div class="controls">
+        <label>Ax (biên độ x): <input type="number" id="Ax" min="0" max="5" step="0.1" value="1"></label>
+        <label>Ay (biên độ y): <input type="number" id="Ay" min="0" max="5" step="0.1" value="1"></label>
+        <label>a (tần số x): <input type="number" id="a" min="1" max="20" value="3"></label>
+            <label>b (tần số y): <input type="number" id="b" min="1" max="20" value="2"></label>
+        <label>δ (pha, °): <input type="number" id="delta" min="0" max="360" step="1" value="90"></label>
+      </div>
+
+     <div class="signal-container"> <!-- Thêm div container mới -->
+        <div class="signal">
+          <h3>x(t) = Ax · sin(at)</h3>
+          <div id="x_signal"></div>
+        </div>
+
+        <div class="signal">
+          <h3>y(t) = Ay · sin(bt + δ)</h3>
+          <div id="y_signal"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div id="graph"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
