@@ -1,15 +1,14 @@
-
 const N = 1000;
 const t = Array.from({ length: N }, (_, i) => i * 2 * Math.PI / N);
 
-function computeData(a, b, delta, Ax, Ay) {
-  const x = t.map(ti => Ax * Math.sin(a * ti));
-  const y = t.map(ti => Ay * Math.sin(b * ti + delta));
+function computeData(a, b, phi_x, phi_y, Ax, Ay) {
+  const x = t.map(ti => Ax * Math.sin(a * ti + phi_x));
+  const y = t.map(ti => Ay * Math.sin(b * ti + phi_y));
   return { x, y };
 }
 
-function plotAll(a, b, delta, Ax, Ay) {
-  const { x, y } = computeData(a, b, delta, Ax, Ay);
+function plotAll(a, b, phi_x, phi_y, Ax, Ay) {
+  const { x, y } = computeData(a, b, phi_x, phi_y, Ax, Ay);
 
   Plotly.newPlot('graph', [{
     x, y, mode: 'lines', line: { color: 'blue' }
@@ -42,10 +41,11 @@ function updatePlot() {
   const b = parseFloat(document.getElementById('b').value);
   const Ax = parseFloat(document.getElementById('Ax').value);
   const Ay = parseFloat(document.getElementById('Ay').value);
-  const deltaDeg = parseFloat(document.getElementById('delta').value);
-  const delta = deltaDeg * Math.PI / 180;
+  const phi_x = parseFloat(document.getElementById('phi_x').value);
+  const phi_y = parseFloat(document.getElementById('phi_y').value);
+  const delta = (phi_y - phi_x)* Math.PI / 180;
 
-  plotAll(a, b, delta, Ax, Ay);
+  plotAll(a, b, phi_x, phi_y, Ax, Ay);
 }
 
 document.querySelectorAll('input').forEach(el => {
